@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Chrome-specific optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improve scrolling performance in Chrome */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Chrome mobile optimizations */
+@media screen and (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  input, textarea, button {
+    -webkit-user-select: auto;
+    user-select: auto;
+  }
+}
+
+/* Dark mode styles */
+@layer base {
+  html.dark {
+    color-scheme: dark;
+  }
+  
+  html.dark body {
+    @apply bg-gray-900 text-white;
+  }
+  
+  html.dark .bg-white {
+    @apply bg-gray-800;
+  }
+  
+  html.dark .bg-gray-50 {
+    @apply bg-gray-900;
+  }
+  
+  html.dark .bg-gray-100 {
+    @apply bg-gray-800;
+  }
+  
+  html.dark .text-gray-900 {
+    @apply text-white;
+  }
+  
+  html.dark .text-gray-800 {
+    @apply text-gray-100;
+  }
+  
+  html.dark .text-gray-700 {
+    @apply text-gray-200;
+  }
+  
+  html.dark .text-gray-600 {
+    @apply text-gray-300;
+  }
+  
+  html.dark .text-gray-500 {
+    @apply text-gray-400;
+  }
+  
+  html.dark .border-gray-100 {
+    @apply border-gray-700;
+  }
+  
+  html.dark .border-gray-200 {
+    @apply border-gray-600;
+  }
+  
+  html.dark .border-gray-300 {
+    @apply border-gray-500;
+  }
+  
+  html.dark .hover\:bg-gray-50:hover {
+    @apply bg-gray-700;
+  }
+  
+  html.dark .hover\:bg-gray-100:hover {
+    @apply bg-gray-700;
+  }
+}
+
+/* Font size styles */
+@layer base {
+  html.font-small {
+    font-size: 14px;
+  }
+  
+  html.font-small .text-xs {
+    font-size: 0.6rem;
+  }
+  
+  html.font-small .text-sm {
+    font-size: 0.75rem;
+  }
+  
+  html.font-small .text-base {
+    font-size: 0.875rem;
+  }
+  
+  html.font-small .text-lg {
+    font-size: 1rem;
+  }
+  
+  html.font-small .text-xl {
+    font-size: 1.125rem;
+  }
+  
+  html.font-small .text-2xl {
+    font-size: 1.25rem;
+  }
+  
+  html.font-medium {
+    font-size: 16px;
+  }
+  
+  html.font-large {
+    font-size: 18px;
+  }
+  
+  html.font-large .text-xs {
+    font-size: 0.8rem;
+  }
+  
+  html.font-large .text-sm {
+    font-size: 0.95rem;
+  }
+  
+  html.font-large .text-base {
+    font-size: 1.1rem;
+  }
+  
+  html.font-large .text-lg {
+    font-size: 1.3rem;
+  }
+  
+  html.font-large .text-xl {
+    font-size: 1.5rem;
+  }
+  
+  html.font-large .text-2xl {
+    font-size: 1.75rem;
+  }
+}
