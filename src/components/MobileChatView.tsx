@@ -237,11 +237,11 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
             <div className="text-center p-8 bg-white/80 backdrop-blur-md rounded-3xl mx-4 shadow-2xl border border-white/30">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-3xl blur opacity-20"></div>
               <div className="relative">
-                {chatAvatar.startsWith('/') ? (
+                {chatId === '1' ? (
                   <img 
                     src={chatAvatar} 
                     alt={chatName}
-                    className="w-20 h-20 rounded-full object-cover border-4 border-white/50 shadow-2xl mx-auto mb-4"
+                    className="w-20 h-20 rounded-full object-cover border-4 border-gradient-to-r from-blue-400 to-purple-500 shadow-2xl mx-auto mb-4"
                   />
                 ) : (
                   <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-3xl mx-auto mb-4 shadow-2xl border-4 border-white/30">
