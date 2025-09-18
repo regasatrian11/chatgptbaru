@@ -116,7 +116,7 @@ export default function LandingPage({ onGetStarted, onDemoLogin, onRegister }: L
         <div className="mb-8 relative">
           <div className="w-32 h-32 rounded-full mb-6 shadow-2xl relative overflow-hidden border-4 border-white/30">
             <img 
-              src="/dww.png" 
+              src="/dddddddddddd.jpg"
               alt="Mikasa AI"
               className="w-full h-full object-cover rounded-full"
             />

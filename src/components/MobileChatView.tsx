@@ -171,7 +171,7 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
           {chatId === '1' ? (
             <div className="relative">
               <img 
-                src={chatAvatar} 
+                src="/dddddddddddd.jpg"
                 alt={chatName}
                 className="w-12 h-12 rounded-full object-cover border-3 border-gradient-to-r from-blue-400 to-purple-500 shadow-2xl"
               />
@@ -239,7 +239,7 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
               <div className="relative">
                 {chatId === '1' ? (
                   <img 
-                    src={chatAvatar} 
+                    src="/dddddddddddd.jpg"
                     alt={chatName}
                     className="w-20 h-20 rounded-full object-cover border-4 border-gradient-to-r from-blue-400 to-purple-500 shadow-2xl mx-auto mb-4"
                   />

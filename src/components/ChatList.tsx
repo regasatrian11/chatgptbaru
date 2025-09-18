@@ -42,7 +42,7 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
     {
       id: '1',
       name: 'Mikasa',
-      avatar: '/dww.png',
+      avatar: '/dddddddddddd.jpg',
       lastMessage: '[Gambar]',
       isOnline: true,
       isAIAgent: true
