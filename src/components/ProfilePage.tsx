@@ -456,25 +456,15 @@ export default function ProfilePage({ activeTab, onTabChange, onLogout }: Profil
           <div className="grid grid-cols-2 gap-4">
             <div>
               <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">{messagesUsed}</p>
-              {user?.avatar_url || user?.avatar || '👤'}
+              <p className="text-xs text-gray-600">Pesan Terkirim</p>
             </div>
             <div>
               <p className="text-3xl font-bold bg-gradient-to-r from-gray-600 to-gray-800 bg-clip-text text-transparent">
                 {messagesLimit === -1 ? '∞' : messagesLimit}
               </p>
               <p className="text-xs text-gray-600">
-              <h3 className="font-medium text-gray-900">{user?.full_name || user?.name || 'Demo User'}</h3>
+                Batas Pesan
               </p>
-              {(user?.username || user?.whatsapp) && (
-                <div className="mt-1 space-y-1">
-                  {user?.username && (
-                    <p className="text-xs text-gray-500">@{user.username}</p>
-                  )}
-                  {user?.whatsapp && (
-                    <p className="text-xs text-gray-500">📱 {user.whatsapp}</p>
-                  )}
-                </div>
-              )}
             </div>
           </div>
           <div className="mt-3 bg-gray-200 rounded-full h-3 shadow-inner">
