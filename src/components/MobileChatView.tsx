@@ -27,7 +27,7 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
   } = useChat();
 
   const chatName = chatId === '1' ? 'Mikasa' : 'Minnie Teman Baik Kamu';
-  const chatAvatar = chatId === '1' ? '👩‍💻' : '👩‍🦰';
+  const chatAvatar = chatId === '1' ? '/dww.png' : '🌸';
   const isOnline = chatId === '1';
 
   // Listen for auto-send message events
@@ -209,9 +209,17 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
         {messages.length === 0 && !isLoading && (
           <div className="flex items-center justify-center h-full">
             <div className="text-center p-8">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-2xl mx-auto mb-4">
-                {chatAvatar}
-              </div>
+              {chatId === '1' ? (
+                <img 
+                  src={chatAvatar} 
+                  alt={chatName}
+                  className="w-16 h-16 rounded-full object-cover border-4 border-blue-400 shadow-xl mx-auto mb-4"
+                />
+              ) : (
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-2xl mx-auto mb-4 shadow-xl">
+                  {chatAvatar}
+                </div>
+              )}
               <h3 className="text-lg font-medium text-gray-900 mb-2">{chatName}</h3>
               <p className="text-gray-500 text-sm">
                 Mulai percakapan dengan {chatName}

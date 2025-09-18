@@ -89,17 +89,17 @@ export default function LandingPage({ onGetStarted, onDemoLogin, onRegister }: L
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-8">
         {/* Character Avatars */}
-        <div className="absolute top-20 left-8 w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-2xl animate-bounce delay-300">
-          👧
+        <div className="absolute top-20 left-8 w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-2xl animate-bounce delay-300 shadow-lg border-2 border-white/30">
+          👧🏻
         </div>
-        <div className="absolute top-32 right-12 w-14 h-14 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center text-xl animate-bounce delay-700">
-          👦
+        <div className="absolute top-32 right-12 w-14 h-14 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center text-xl animate-bounce delay-700 shadow-lg border-2 border-white/30">
+          👦🏻
         </div>
-        <div className="absolute bottom-40 left-12 w-12 h-12 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center text-lg animate-bounce delay-1000">
-          👩
+        <div className="absolute bottom-40 left-12 w-12 h-12 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center text-lg animate-bounce delay-1000 shadow-lg border-2 border-white/30">
+          👩🏻
         </div>
-        <div className="absolute bottom-32 right-16 w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-xl animate-bounce delay-500">
-          👨
+        <div className="absolute bottom-32 right-16 w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-xl animate-bounce delay-500 shadow-lg border-2 border-white/30">
+          👨🏻
         </div>
 
         {/* Speech Bubbles */}
@@ -114,9 +114,13 @@ export default function LandingPage({ onGetStarted, onDemoLogin, onRegister }: L
 
         {/* Main Character */}
         <div className="mb-8 relative">
-          <div className="w-32 h-32 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 rounded-full flex items-center justify-center text-6xl mb-6 shadow-2xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-full"></div>
-            <div className="relative z-10">👩‍💻</div>
+          <div className="w-32 h-32 rounded-full mb-6 shadow-2xl relative overflow-hidden border-4 border-white/30">
+            <img 
+              src="/dww.png" 
+              alt="Mikasa AI"
+              className="w-full h-full object-cover rounded-full"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 via-purple-500/20 to-pink-500/20 rounded-full"></div>
             
             {/* Glowing Ring Effect */}
             <div className="absolute -inset-4 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full opacity-75 blur-lg animate-spin-slow"></div>
