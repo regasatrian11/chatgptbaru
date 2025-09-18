@@ -126,10 +126,10 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
   // Show loading while checking auth status
   if (!isInitialized) {
     return (
-      <div className="flex flex-col h-screen bg-white">
+      <div className="flex flex-col h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4 animate-pulse">
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4 animate-pulse shadow-xl">
               👩‍💻
             </div>
             <p className="text-gray-600">Memuat...</p>
@@ -142,31 +142,34 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
   // If not logged in, show login prompt
   if (!isLoggedIn) {
     return (
-      <div className="flex flex-col h-screen bg-white">
-        <div className="flex items-center justify-between p-4 border-b border-gray-100">
+      <div className="flex flex-col h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+        <div className="flex items-center justify-between p-4 border-b border-white/20 bg-white/80 backdrop-blur-sm">
           <h1 className="text-lg font-medium text-gray-900">Mikasa AI</h1>
         </div>
         
         <div className="flex-1 flex items-center justify-center p-4">
           <div className="text-center">
-            <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-6">
+            <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-6 shadow-2xl animate-pulse">
               👩‍💻
             </div>
             <h2 className="text-xl font-semibold text-gray-900 mb-2">Selamat Datang di Mikasa AI!</h2>
             <p className="text-gray-600 text-sm mb-6">
               Silakan login terlebih dahulu untuk mengakses fitur chat dan lainnya
             </p>
-            <button
-              onClick={() => onTabChange('profile')}
-              className="bg-blue-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors"
-            >
-              Login Sekarang
-            </button>
+            <div className="relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-xl blur opacity-75 animate-pulse"></div>
+              <button
+                onClick={() => onTabChange('profile')}
+                className="relative bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+              >
+                Login Sekarang
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Bottom Navigation - Only Profile accessible */}
-        <div className="flex items-center justify-around p-4 border-t border-gray-100 bg-white">
+        <div className="flex items-center justify-around p-4 border-t border-white/20 bg-white/90 backdrop-blur-sm">
           <button 
             className="flex flex-col items-center gap-1 opacity-50 cursor-not-allowed"
           >
@@ -193,8 +196,11 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
           </button>
           <button 
             onClick={() => onTabChange('profile')}
-            className="flex flex-col items-center gap-1"
+            className="flex flex-col items-center gap-1 relative"
           >
+            {activeTab === 'profile' && (
+              <div className="absolute -inset-2 bg-gradient-to-r from-blue-400 to-purple-500 rounded-xl blur opacity-50"></div>
+            )}
             <User size={20} className={activeTab === 'profile' ? 'text-gray-900' : 'text-gray-400'} />
             <span className={`text-xs ${activeTab === 'profile' ? 'text-gray-900 font-medium' : 'text-gray-400'}`}>
               Profil
@@ -206,28 +212,42 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
   }
 
   return (
-    <div className="flex flex-col h-screen bg-white">
+    <div className="flex flex-col h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-purple-500/20 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute top-40 right-16 w-24 h-24 bg-gradient-to-br from-pink-400/20 to-red-500/20 rounded-full blur-lg animate-pulse delay-1000"></div>
+        <div className="absolute bottom-32 left-20 w-40 h-40 bg-gradient-to-br from-green-400/20 to-teal-500/20 rounded-full blur-2xl animate-pulse delay-2000"></div>
+        
+        {/* Floating particles */}
+        <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-blue-400 rounded-full animate-bounce delay-300"></div>
+        <div className="absolute top-1/3 right-1/4 w-1.5 h-1.5 bg-pink-400 rounded-full animate-bounce delay-700"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-2.5 h-2.5 bg-purple-400 rounded-full animate-bounce delay-1000"></div>
+      </div>
+
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-100">
+      <div className="relative z-10 flex items-center justify-between p-4 border-b border-white/20 bg-white/80 backdrop-blur-md shadow-lg">
         <div></div> {/* Empty space where title was */}
         <div className="flex items-center gap-2">
           <button
             onClick={handleSearchClick}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-2 hover:bg-white/50 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-110"
           >
-            <Search size={20} className="text-gray-600" />
+            <Search size={20} className="text-indigo-600" />
           </button>
           <button
             onClick={handleNewChatClick}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-2 hover:bg-white/50 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-110"
           >
-            <Edit3 size={20} className="text-gray-600" />
+            <Edit3 size={20} className="text-purple-600" />
           </button>
         </div>
       </div>
 
       {/* Usage Stats */}
-      <div className="bg-white mx-4 mt-4 rounded-xl border border-gray-100 p-4">
+      <div className="relative z-10 bg-white/90 backdrop-blur-md mx-4 mt-4 rounded-2xl border border-white/30 p-4 shadow-xl">
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-2xl blur opacity-20"></div>
+        <div className="relative">
         <h3 className="font-medium text-gray-900 mb-3">Pesan Hari Ini</h3>
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs text-gray-600">Status</span>
@@ -235,7 +255,7 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
             {subscription?.end_date && (
               <span className="text-xs text-gray-500">Berakhir: {new Date(subscription.end_date).toLocaleDateString('id-ID')}</span>
             )}
-            <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+            <span className={`text-xs font-bold px-3 py-1 rounded-full shadow-lg ${
               isPremium ? 'bg-purple-100 text-purple-800' :
               isPro ? 'bg-orange-100 text-orange-800' :
               'bg-gray-100 text-gray-800'
@@ -252,9 +272,9 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
             {messagesLimit === -1 ? '∞' : messagesRemaining} tersisa
           </span>
         </div>
-        <div className="bg-gray-200 rounded-full h-2 mb-3">
+        <div className="mt-3 bg-gray-200 rounded-full h-3 shadow-inner">
           <div 
-            className={`h-2 rounded-full transition-all duration-300 ${
+            className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 h-3 rounded-full transition-all duration-500 shadow-lg"
               messagesUsed >= messagesLimit * 0.8 ? 'bg-red-500' : 
               messagesUsed >= messagesLimit * 0.6 ? 'bg-yellow-500' : 'bg-green-500'
             }`}
@@ -264,7 +284,8 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
           ></div>
         </div>
         {!canSendMessage && messagesLimit !== -1 && (
-          <p className="text-xs text-red-600 bg-red-50 p-2 rounded-lg">
+          <div className="mt-3 p-3 bg-gradient-to-r from-red-50 to-pink-50 border border-red-200 rounded-xl">
+            <p className="text-xs text-red-700 font-medium text-center">
             ⚠️ Batas harian tercapai ({messagesUsed}/{messagesLimit}). 
             {messagesLimit === 10 ? ' Daftar akun reguler atau upgrade ke Premium!' : ' Upgrade ke Premium untuk melanjutkan!'}
           </p>
@@ -272,8 +293,10 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
         {canSendMessage && messagesUsed >= messagesLimit * 0.8 && (
           <p className="text-xs text-yellow-600 bg-yellow-50 p-2 rounded-lg">
             ⚠️ Hampir mencapai batas harian ({messagesUsed}/{messagesLimit}).
-          </p>
+            </p>
+          </div>
         )}
+        </div>
       </div>
 
       {/* Chat List */}
@@ -281,63 +304,71 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
         {/* Search Bar */}
         {showSearch && (
           <div className="mx-4 mt-2 mb-4">
+            <div className="relative">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl blur opacity-30"></div>
             <input
               type="text"
               placeholder="Cari obrolan..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="relative w-full px-4 py-3 border border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white/90 backdrop-blur-sm shadow-lg"
               autoFocus
             />
+            </div>
           </div>
         )}
         
-        <div className="space-y-1">
+        <div className="space-y-2 px-4">
           {filteredChats.map((chat) => (
             <div
               key={chat.id}
               onClick={() => onSelectChat(chat.id)}
-              className="flex items-center gap-3 p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-50 transition-colors active:bg-gray-100"
+              className="relative group flex items-center gap-3 p-4 hover:bg-white/70 cursor-pointer rounded-2xl transition-all duration-300 active:scale-95 hover:shadow-xl backdrop-blur-sm border border-white/20"
             >
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-400/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-2xl blur transition-all duration-300"></div>
+              <div className="relative flex items-center gap-3 w-full">
               <div className="relative">
                 {chat.id === '1' ? (
                   <img 
                     src={chat.avatar} 
                     alt={chat.name}
-                    className="w-12 h-12 rounded-full object-cover border-2 border-blue-400 shadow-lg"
+                    className="w-14 h-14 rounded-full object-cover border-3 border-gradient-to-r from-blue-400 to-purple-500 shadow-2xl"
                   />
                 ) : (
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-lg shadow-lg">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-xl shadow-2xl">
                     {chat.avatar}
                   </div>
                 )}
                 {chat.isOnline && (
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+                  <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
                 )}
               </div>
               
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <h3 className="font-medium text-gray-900 truncate">{chat.name}</h3>
+                  <h3 className="font-bold text-gray-900 truncate text-lg">{chat.name}</h3>
                   {chat.isAIAgent && (
-                    <span className="text-xs text-purple-500 bg-purple-50 px-2 py-0.5 rounded-full">
+                    <span className="text-xs text-white bg-gradient-to-r from-purple-500 to-pink-500 px-2 py-1 rounded-full font-bold shadow-lg">
                       AI
                     </span>
                   )}
                   {chat.website && (
-                    <span className="text-xs text-blue-500 bg-blue-50 px-2 py-0.5 rounded-full">
+                    <span className="text-xs text-white bg-gradient-to-r from-blue-500 to-cyan-500 px-2 py-1 rounded-full font-bold shadow-lg">
                       {chat.website}
                     </span>
                   )}
                 </div>
-                <p className="text-sm text-gray-500 truncate">{chat.lastMessage}</p>
+                <p className="text-sm text-gray-600 truncate font-medium">{chat.lastMessage}</p>
+              </div>
               </div>
             </div>
           ))}
           
           {filteredChats.length === 0 && searchQuery && (
             <div className="text-center py-8">
-              <Search className="mx-auto text-gray-300 mb-4" size={48} />
+              <div className="w-16 h-16 bg-gradient-to-br from-gray-200 to-gray-300 rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl">
+                <Search className="text-gray-500" size={32} />
+              </div>
               <p className="text-gray-500">Tidak ada obrolan yang ditemukan</p>
             </div>
           )}
@@ -345,51 +376,76 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
       </div>
 
       {/* Bottom Navigation */}
-      <div className="flex items-center justify-around p-4 border-t border-gray-100 bg-white">
+      <div className="relative z-10 flex items-center justify-around p-4 border-t border-white/20 bg-white/90 backdrop-blur-md shadow-2xl">
         <button 
           onClick={() => onTabChange('chat')}
-          className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+          className="flex flex-col items-center gap-1 p-3 rounded-xl hover:bg-white/70 transition-all duration-300 hover:shadow-lg hover:scale-110 relative group"
         >
+          {activeTab === 'chat' && (
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-purple-500 rounded-xl blur opacity-50"></div>
+          )}
+          <div className="relative">
           <MessageCircle size={20} className={activeTab === 'chat' ? 'text-gray-900' : 'text-gray-400'} />
           <span className={`text-xs ${activeTab === 'chat' ? 'text-gray-900 font-medium' : 'text-gray-400'}`}>
             Obrolan
           </span>
+          </div>
         </button>
         <button 
           onClick={() => onTabChange('explore')}
-          className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+          className="flex flex-col items-center gap-1 p-3 rounded-xl hover:bg-white/70 transition-all duration-300 hover:shadow-lg hover:scale-110 relative group"
         >
+          {activeTab === 'explore' && (
+            <div className="absolute -inset-1 bg-gradient-to-r from-green-400 to-teal-500 rounded-xl blur opacity-50"></div>
+          )}
+          <div className="relative">
           <Search size={20} className={activeTab === 'explore' ? 'text-gray-900' : 'text-gray-400'} />
           <span className={`text-xs ${activeTab === 'explore' ? 'text-gray-900 font-medium' : 'text-gray-400'}`}>
             Jelajahi
           </span>
+          </div>
         </button>
         <button 
           onClick={() => onTabChange('subscription')}
-          className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+          className="flex flex-col items-center gap-1 p-3 rounded-xl hover:bg-white/70 transition-all duration-300 hover:shadow-lg hover:scale-110 relative group"
         >
+          {activeTab === 'subscription' && (
+            <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl blur opacity-50"></div>
+          )}
+          <div className="relative">
           <Crown size={20} className={activeTab === 'subscription' ? 'text-gray-900' : 'text-gray-400'} />
           <span className={`text-xs ${activeTab === 'subscription' ? 'text-gray-900 font-medium' : 'text-gray-400'}`}>
             Langganan
           </span>
+          </div>
         </button>
         <button 
           onClick={() => onTabChange('notifications')}
-          className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+          className="flex flex-col items-center gap-1 p-3 rounded-xl hover:bg-white/70 transition-all duration-300 hover:shadow-lg hover:scale-110 relative group"
         >
+          {activeTab === 'notifications' && (
+            <div className="absolute -inset-1 bg-gradient-to-r from-red-400 to-pink-500 rounded-xl blur opacity-50"></div>
+          )}
+          <div className="relative">
           <Bell size={20} className={activeTab === 'notifications' ? 'text-gray-900' : 'text-gray-400'} />
           <span className={`text-xs ${activeTab === 'notifications' ? 'text-gray-900 font-medium' : 'text-gray-400'}`}>
             Pemberitahuan
           </span>
+          </div>
         </button>
         <button 
           onClick={() => onTabChange('profile')}
-          className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+          className="flex flex-col items-center gap-1 p-3 rounded-xl hover:bg-white/70 transition-all duration-300 hover:shadow-lg hover:scale-110 relative group"
         >
+          {activeTab === 'profile' && (
+            <div className="absolute -inset-1 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-xl blur opacity-50"></div>
+          )}
+          <div className="relative">
           <User size={20} className={activeTab === 'profile' ? 'text-gray-900' : 'text-gray-400'} />
           <span className={`text-xs ${activeTab === 'profile' ? 'text-gray-900 font-medium' : 'text-gray-400'}`}>
             Profil
           </span>
+          </div>
         </button>
       </div>
     </div>

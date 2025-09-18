@@ -58,10 +58,14 @@ export default function ChatInput({ onSendMessage, onSendImage, onTakePhoto, dis
       <div className="p-4">
       {/* Attachment Menu */}
       {showAttachMenu && (
-        <div className="mb-3 bg-white border border-gray-200 rounded-lg shadow-lg p-2">
+        <div className="mb-3 bg-white/90 backdrop-blur-md border border-white/30 rounded-2xl shadow-2xl p-3">
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-2xl blur opacity-20"></div>
+          <div className="relative">
           <label className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors">
-            <Image size={20} className="text-blue-500" />
-            <span className="text-sm text-gray-700">Kirim Foto</span>
+            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
+              <Image size={16} className="text-white" />
+            </div>
+            <span className="text-sm text-gray-700 font-medium">Kirim Foto</span>
             <input
               type="file"
               accept="image/*"
@@ -77,19 +81,24 @@ export default function ChatInput({ onSendMessage, onSendImage, onTakePhoto, dis
               setShowAttachMenu(false);
             }}
             disabled={disabled}
-            className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Camera size={20} className="text-green-500" />
-            <span className="text-sm text-gray-700">Kamera Langsung</span>
+            <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center">
+              <Camera size={16} className="text-white" />
+            </div>
+            <span className="text-sm text-gray-700 font-medium">Kamera Langsung</span>
           </button>
+          </div>
         </div>
       )}
       
-      <div className="flex gap-3 items-end">
+      <div className="flex gap-3 items-end relative">
+        <div className="absolute -inset-1 bg-gradient-to-r from-blue-400/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur"></div>
+        <div className="relative flex gap-3 items-end w-full bg-white/80 backdrop-blur-sm rounded-3xl p-3 border border-white/30 shadow-xl">
         <button
           onClick={() => setShowAttachMenu(!showAttachMenu)}
           disabled={disabled}
-          className="w-11 h-11 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+          className="w-11 h-11 bg-gradient-to-r from-gray-100 to-gray-200 text-gray-600 rounded-full hover:from-gray-200 hover:to-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110"
         >
           <Paperclip size={18} />
         </button>
@@ -103,16 +112,17 @@ export default function ChatInput({ onSendMessage, onSendImage, onTakePhoto, dis
           autoCorrect="off"
           autoCapitalize="off"
           spellCheck="false"
-          className="flex-1 resize-none rounded-2xl border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] max-h-32 bg-gray-50"
+          className="flex-1 resize-none rounded-2xl border border-white/30 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] max-h-32 bg-white/70 backdrop-blur-sm shadow-inner font-medium"
           rows={1}
         />
         <button
           onClick={handleSend}
           disabled={disabled || !input.trim()}
-          className="w-11 h-11 bg-blue-500 text-white rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+          className="w-11 h-11 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110"
         >
           <Send size={18} />
         </button>
+        </div>
       </div>
       </div>
     </>

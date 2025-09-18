@@ -151,29 +151,36 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
     );
   }
   return (
-    <div className="flex flex-col h-screen bg-white">
+    <div className="flex flex-col h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-purple-500/10 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute top-40 right-16 w-24 h-24 bg-gradient-to-br from-pink-400/10 to-red-500/10 rounded-full blur-lg animate-pulse delay-1000"></div>
+        <div className="absolute bottom-32 left-20 w-40 h-40 bg-gradient-to-br from-green-400/10 to-teal-500/10 rounded-full blur-2xl animate-pulse delay-2000"></div>
+      </div>
+
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-white">
+      <div className="relative z-10 flex items-center justify-between p-4 border-b border-white/20 bg-white/90 backdrop-blur-md shadow-lg">
         <div className="flex items-center gap-3">
           <button 
             onClick={onBack} 
-            className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-2 hover:bg-white/70 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-110"
           >
-            <ArrowLeft size={20} className="text-gray-600" />
-          </button>
+            <ArrowLeft size={20} className="text-indigo-600" />
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-lg shadow-2xl border-2 border-white/30">
           <div className="relative">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white">
               {chatAvatar}
             </div>
-            {isOnline && (
-              <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
+                className="w-12 h-12 rounded-full object-cover border-3 border-gradient-to-r from-blue-400 to-purple-500 shadow-2xl"
             )}
           </div>
           <div>
-            <h2 className="font-medium text-gray-900">{chatName}</h2>
-            {isOnline && <p className="text-xs text-green-500">Online</p>}
+            <h2 className="font-bold text-gray-900 text-lg">{chatName}</h2>
+            {isOnline && <p className="text-xs text-green-600 font-medium">● Online</p>}
             {!canSendMessage && (
-              <p className="text-xs text-red-500">Batas pesan tercapai</p>
+              <p className="text-xs text-red-600 font-medium">⚠️ Batas pesan tercapai</p>
             )}
           </div>
         </div>
@@ -181,54 +188,57 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
         <div className="flex items-center gap-2">
           <button 
             onClick={handlePhoneCall}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-2 hover:bg-white/70 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-110"
           >
-            <Phone size={18} className="text-gray-600" />
+            <Phone size={18} className="text-green-600" />
           </button>
           <button 
             onClick={handleVideoCall}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-2 hover:bg-white/70 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-110"
           >
-            <Video size={18} className="text-gray-600" />
+            <Video size={18} className="text-blue-600" />
           </button>
           <button 
             onClick={handleMenuClick}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-2 hover:bg-white/70 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-110"
           >
-            <MoreVertical size={18} className="text-gray-600" />
+            <MoreVertical size={18} className="text-purple-600" />
           </button>
         </div>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto bg-gray-50">
+      <div className="relative z-10 flex-1 overflow-y-auto bg-gradient-to-b from-white/30 to-white/10 backdrop-blur-sm">
         {error && (
           <ErrorMessage message={error} onDismiss={clearError} />
         )}
         
         {messages.length === 0 && !isLoading && (
           <div className="flex items-center justify-center h-full">
-            <div className="text-center p-8">
+            <div className="text-center p-8 bg-white/80 backdrop-blur-md rounded-3xl mx-4 shadow-2xl border border-white/30">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-3xl blur opacity-20"></div>
+              <div className="relative">
               {chatId === '1' ? (
                 <img 
                   src={chatAvatar} 
                   alt={chatName}
-                  className="w-16 h-16 rounded-full object-cover border-4 border-blue-400 shadow-xl mx-auto mb-4"
+                  className="w-20 h-20 rounded-full object-cover border-4 border-gradient-to-r from-blue-400 to-purple-500 shadow-2xl mx-auto mb-4"
                 />
               ) : (
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-2xl mx-auto mb-4 shadow-xl">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-3xl mx-auto mb-4 shadow-2xl border-4 border-white/30">
                   {chatAvatar}
                 </div>
               )}
-              <h3 className="text-lg font-medium text-gray-900 mb-2">{chatName}</h3>
-              <p className="text-gray-500 text-sm">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{chatName}</h3>
+              <p className="text-gray-600 text-sm font-medium">
                 Mulai percakapan dengan {chatName}
               </p>
               {isLoggedIn && (
-                <div className="mt-4 text-xs text-gray-500">
+                <div className="mt-4 text-xs text-indigo-600 font-medium">
                   Pesan tersisa: {messagesRemaining === -1 ? '∞' : messagesRemaining}
                 </div>
               )}
+              </div>
             </div>
           </div>
         )}
@@ -246,7 +256,7 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
 
       {/* Input */}
       {isLoggedIn ? (
-        <div className="bg-white border-t border-gray-100">
+        <div className="relative z-10 bg-white/90 backdrop-blur-md border-t border-white/20 shadow-2xl">
           <ChatInput 
             onSendMessage={handleSendMessage} 
             onSendImage={handleSendImage}
@@ -255,25 +265,30 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
           />
           {!canSendMessage && (
             <div className="px-4 pb-2">
-              <p className="text-xs text-red-600 text-center">
+              <div className="bg-gradient-to-r from-red-50 to-pink-50 border border-red-200 rounded-xl p-3">
+                <p className="text-xs text-red-700 text-center font-medium">
                 Batas pesan harian tercapai ({messagesUsed}/{messagesLimit}). 
                 {messagesLimit === 10 ? 'Daftar akun reguler atau upgrade ke Premium!' : 'Upgrade ke Premium untuk melanjutkan!'}
-              </p>
+                </p>
+              </div>
             </div>
           )}
         </div>
       ) : (
-        <div className="bg-white border-t border-gray-100 p-4">
+        <div className="relative z-10 bg-white/90 backdrop-blur-md border-t border-white/20 p-4 shadow-2xl">
           <div className="text-center">
             <p className="text-gray-600 text-sm mb-3">
               Silakan login terlebih dahulu untuk dapat mengirim pesan
             </p>
-            <button
-              onClick={onBack}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors"
-            >
-              Kembali ke Login
-            </button>
+            <div className="relative">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-purple-500 rounded-xl blur opacity-50"></div>
+              <button
+                onClick={onBack}
+                className="relative bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-xl text-sm font-bold hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              >
+                Kembali ke Login
+              </button>
+            </div>
           </div>
         </div>
       )}
