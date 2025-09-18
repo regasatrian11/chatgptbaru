@@ -274,7 +274,7 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
         </div>
         <div className="mt-3 bg-gray-200 rounded-full h-3 shadow-inner">
           <div 
-            className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 h-3 rounded-full transition-all duration-500 shadow-lg"
+            className={`h-3 rounded-full transition-all duration-500 shadow-lg ${
               messagesUsed >= messagesLimit * 0.8 ? 'bg-red-500' : 
               messagesUsed >= messagesLimit * 0.6 ? 'bg-yellow-500' : 'bg-green-500'
             }`}
@@ -289,12 +289,12 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
             ⚠️ Batas harian tercapai ({messagesUsed}/{messagesLimit}). 
             {messagesLimit === 10 ? ' Daftar akun reguler atau upgrade ke Premium!' : ' Upgrade ke Premium untuk melanjutkan!'}
           </p>
+          </div>
         )}
         {canSendMessage && messagesUsed >= messagesLimit * 0.8 && (
           <p className="text-xs text-yellow-600 bg-yellow-50 p-2 rounded-lg">
             ⚠️ Hampir mencapai batas harian ({messagesUsed}/{messagesLimit}).
             </p>
-          </div>
         )}
         </div>
       </div>
