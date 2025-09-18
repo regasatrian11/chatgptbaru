@@ -178,12 +178,16 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
               {isOnline && (
                 <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
               )}
-            {chatAvatar.startsWith('/') ? (
+            </div>
           ) : (
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-lg shadow-2xl border-2 border-white/30">
               <div className="relative">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white">
-                  className="w-12 h-12 rounded-full object-cover border-2 border-white/50 shadow-2xl"
+                  <img 
+                    src={chatAvatar} 
+                    alt={chatName}
+                    className="w-12 h-12 rounded-full object-cover border-2 border-white/50 shadow-2xl"
+                  />
                 </div>
                 {isOnline && (
                   <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
