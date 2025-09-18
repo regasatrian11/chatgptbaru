@@ -89,10 +89,10 @@ export default function SubscriptionPage({ activeTab, onTabChange }: Subscriptio
             <span className="text-xs text-gray-300">Langganan</span>
           </button>
           <button 
-            className="flex flex-col items-center gap-1 opacity-50 cursor-not-allowed"
+            className="flex flex-col items-center gap-1 opacity-50 cursor-not-allowed min-w-0"
           >
             <Bell size={20} className="text-gray-300" />
-            <span className="text-xs text-gray-300">Pemberitahuan</span>
+            <span className="text-xs text-gray-300 whitespace-nowrap">Pemberitahuan</span>
           </button>
           <button 
             onClick={() => onTabChange('profile')}

@@ -205,7 +205,7 @@ export default function ExplorePage({ activeTab, onTabChange }: ExplorePageProps
       <div className="flex items-center justify-around p-4 border-t border-gray-100 bg-white">
         <button 
           onClick={() => onTabChange('chat')}
-          className="flex flex-col items-center gap-1"
+          className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-gray-50 transition-all duration-200"
         >
           <MessageCircle size={20} className={activeTab === 'chat' ? 'text-gray-900' : 'text-gray-400'} />
           <span className={`text-xs ${activeTab === 'chat' ? 'text-gray-900 font-medium' : 'text-gray-400'}`}>
@@ -214,7 +214,7 @@ export default function ExplorePage({ activeTab, onTabChange }: ExplorePageProps
         </button>
         <button 
           onClick={() => onTabChange('explore')}
-          className="flex flex-col items-center gap-1"
+          className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-gray-50 transition-all duration-200"
         >
           <Search size={20} className={activeTab === 'explore' ? 'text-gray-900' : 'text-gray-400'} />
           <span className={`text-xs ${activeTab === 'explore' ? 'text-gray-900 font-medium' : 'text-gray-400'}`}>
@@ -223,7 +223,7 @@ export default function ExplorePage({ activeTab, onTabChange }: ExplorePageProps
         </button>
         <button 
           onClick={() => onTabChange('subscription')}
-          className="flex flex-col items-center gap-1"
+          className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-gray-50 transition-all duration-200"
         >
           <Crown size={20} className={activeTab === 'subscription' ? 'text-gray-900' : 'text-gray-400'} />
           <span className={`text-xs ${activeTab === 'subscription' ? 'text-gray-900 font-medium' : 'text-gray-400'}`}>
@@ -232,16 +232,16 @@ export default function ExplorePage({ activeTab, onTabChange }: ExplorePageProps
         </button>
         <button 
           onClick={() => onTabChange('notifications')}
-          className="flex flex-col items-center gap-1"
+          className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-gray-50 transition-all duration-200 min-w-0"
         >
           <Bell size={20} className={activeTab === 'notifications' ? 'text-gray-900' : 'text-gray-400'} />
-          <span className={`text-xs ${activeTab === 'notifications' ? 'text-gray-900 font-medium' : 'text-gray-400'}`}>
+          <span className={`text-xs ${activeTab === 'notifications' ? 'text-gray-900 font-medium' : 'text-gray-400'} whitespace-nowrap`}>
             Pemberitahuan
           </span>
         </button>
         <button 
           onClick={() => onTabChange('profile')}
-          className="flex flex-col items-center gap-1"
+          className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-gray-50 transition-all duration-200"
         >
           <User size={20} className={activeTab === 'profile' ? 'text-gray-900' : 'text-gray-400'} />
           <span className={`text-xs ${activeTab === 'profile' ? 'text-gray-900 font-medium' : 'text-gray-400'}`}>

@@ -379,10 +379,10 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
       <div className="relative z-10 flex items-center justify-around p-4 border-t border-white/20 bg-white/90 backdrop-blur-md shadow-2xl">
         <button 
           onClick={() => onTabChange('chat')}
-          className="flex flex-col items-center gap-1 p-3 rounded-xl hover:bg-white/70 transition-all duration-300 hover:shadow-lg hover:scale-110 relative group"
+          className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-white/70 transition-all duration-300 hover:shadow-md hover:scale-105 relative group"
         >
           {activeTab === 'chat' && (
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-purple-500 rounded-xl blur opacity-50"></div>
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-purple-500 rounded-lg blur opacity-30"></div>
           )}
           <div className="relative">
           <MessageCircle size={20} className={activeTab === 'chat' ? 'text-gray-900' : 'text-gray-400'} />
@@ -393,10 +393,10 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
         </button>
         <button 
           onClick={() => onTabChange('explore')}
-          className="flex flex-col items-center gap-1 p-3 rounded-xl hover:bg-white/70 transition-all duration-300 hover:shadow-lg hover:scale-110 relative group"
+          className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-white/70 transition-all duration-300 hover:shadow-md hover:scale-105 relative group"
         >
           {activeTab === 'explore' && (
-            <div className="absolute -inset-1 bg-gradient-to-r from-green-400 to-teal-500 rounded-xl blur opacity-50"></div>
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-green-400 to-teal-500 rounded-lg blur opacity-30"></div>
           )}
           <div className="relative">
           <Search size={20} className={activeTab === 'explore' ? 'text-gray-900' : 'text-gray-400'} />
@@ -407,10 +407,10 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
         </button>
         <button 
           onClick={() => onTabChange('subscription')}
-          className="flex flex-col items-center gap-1 p-3 rounded-xl hover:bg-white/70 transition-all duration-300 hover:shadow-lg hover:scale-110 relative group"
+          className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-white/70 transition-all duration-300 hover:shadow-md hover:scale-105 relative group"
         >
           {activeTab === 'subscription' && (
-            <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl blur opacity-50"></div>
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg blur opacity-30"></div>
           )}
           <div className="relative">
           <Crown size={20} className={activeTab === 'subscription' ? 'text-gray-900' : 'text-gray-400'} />
@@ -421,24 +421,24 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
         </button>
         <button 
           onClick={() => onTabChange('notifications')}
-          className="flex flex-col items-center gap-1 p-3 rounded-xl hover:bg-white/70 transition-all duration-300 hover:shadow-lg hover:scale-110 relative group"
+          className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-white/70 transition-all duration-300 hover:shadow-md hover:scale-105 relative group min-w-0"
         >
           {activeTab === 'notifications' && (
-            <div className="absolute -inset-1 bg-gradient-to-r from-red-400 to-pink-500 rounded-xl blur opacity-50"></div>
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-red-400 to-pink-500 rounded-lg blur opacity-30"></div>
           )}
           <div className="relative">
           <Bell size={20} className={activeTab === 'notifications' ? 'text-gray-900' : 'text-gray-400'} />
-          <span className={`text-xs ${activeTab === 'notifications' ? 'text-gray-900 font-medium' : 'text-gray-400'}`}>
+          <span className={`text-xs ${activeTab === 'notifications' ? 'text-gray-900 font-medium' : 'text-gray-400'} whitespace-nowrap`}>
             Pemberitahuan
           </span>
           </div>
         </button>
         <button 
           onClick={() => onTabChange('profile')}
-          className="flex flex-col items-center gap-1 p-3 rounded-xl hover:bg-white/70 transition-all duration-300 hover:shadow-lg hover:scale-110 relative group"
+          className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-white/70 transition-all duration-300 hover:shadow-md hover:scale-105 relative group"
         >
           {activeTab === 'profile' && (
-            <div className="absolute -inset-1 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-xl blur opacity-50"></div>
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-lg blur opacity-30"></div>
           )}
           <div className="relative">
           <User size={20} className={activeTab === 'profile' ? 'text-gray-900' : 'text-gray-400'} />

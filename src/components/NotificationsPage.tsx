@@ -211,7 +211,7 @@ export default function NotificationsPage({ activeTab, onTabChange }: Notificati
     switch (type) {
       case 'success':
         return <CheckCircle className="text-green-500" size={20} />;
-      case 'warning':
+            className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-gray-50 transition-all duration-200"
         return <AlertTriangle className="text-yellow-500" size={20} />;
       default:
         return <Info className="text-blue-500" size={20} />;
@@ -220,7 +220,7 @@ export default function NotificationsPage({ activeTab, onTabChange }: Notificati
 
   const formatTime = (timestamp: Date) => {
     const now = new Date();
-    const diff = now.getTime() - timestamp.getTime();
+            className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-gray-50 transition-all duration-200"
     const minutes = Math.floor(diff / (1000 * 60));
     const hours = Math.floor(diff / (1000 * 60 * 60));
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -229,7 +229,7 @@ export default function NotificationsPage({ activeTab, onTabChange }: Notificati
     if (hours > 0) return `${hours} jam lalu`;
     if (minutes > 0) return `${minutes} menit lalu`;
     return 'Baru saja';
-  };
+            className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-gray-50 transition-all duration-200"
 
   const unreadCount = notifications.filter(n => !n.isRead).length;
 
@@ -238,7 +238,7 @@ export default function NotificationsPage({ activeTab, onTabChange }: Notificati
       {/* Header */}
       <div className="bg-white border-b border-gray-100 p-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+            className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-gray-50 transition-all duration-200 min-w-0"
             <Bell className="text-gray-700" size={24} />
             <div>
               <h1 className="text-xl font-semibold text-gray-900">Pemberitahuan</h1>
@@ -246,7 +246,7 @@ export default function NotificationsPage({ activeTab, onTabChange }: Notificati
                 <p className="text-sm text-blue-600">{unreadCount} belum dibaca</p>
               )}
             </div>
-          </div>
+            <span className={`text-xs ${activeTab === 'notifications' ? 'text-gray-900 font-medium' : 'text-gray-400'} whitespace-nowrap`}>
           <div className="flex items-center gap-2">
             {unreadCount > 0 && (
               <button
@@ -258,7 +258,7 @@ export default function NotificationsPage({ activeTab, onTabChange }: Notificati
             )}
             {notifications.length > 0 && (
               <button
-                onClick={clearAllNotifications}
+            className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-gray-50 transition-all duration-200"
                 className="text-red-500 text-sm font-medium hover:text-red-600 px-2 py-1 rounded hover:bg-red-50 transition-colors"
               >
                 Hapus semua
