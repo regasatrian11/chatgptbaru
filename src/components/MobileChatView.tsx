@@ -167,15 +167,30 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
             className="p-2 hover:bg-white/70 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-110"
           >
             <ArrowLeft size={20} className="text-indigo-600" />
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-lg shadow-2xl border-2 border-white/30">
-          <div className="relative">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white">
-              {chatAvatar}
-            </div>
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
+          </button>
+          {chatId === '1' ? (
+            <div className="relative">
+              <img 
+                src={chatAvatar} 
+                alt={chatName}
                 className="w-12 h-12 rounded-full object-cover border-3 border-gradient-to-r from-blue-400 to-purple-500 shadow-2xl"
-            )}
-          </div>
+              />
+              {isOnline && (
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
+              )}
+            </div>
+          ) : (
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-lg shadow-2xl border-2 border-white/30">
+              <div className="relative">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white">
+                  {chatAvatar}
+                </div>
+                {isOnline && (
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
+                )}
+              </div>
+            </div>
+          )}
           <div>
             <h2 className="font-bold text-gray-900 text-lg">{chatName}</h2>
             {isOnline && <p className="text-xs text-green-600 font-medium">● Online</p>}
@@ -218,26 +233,26 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
             <div className="text-center p-8 bg-white/80 backdrop-blur-md rounded-3xl mx-4 shadow-2xl border border-white/30">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-3xl blur opacity-20"></div>
               <div className="relative">
-              {chatId === '1' ? (
-                <img 
-                  src={chatAvatar} 
-                  alt={chatName}
-                  className="w-20 h-20 rounded-full object-cover border-4 border-gradient-to-r from-blue-400 to-purple-500 shadow-2xl mx-auto mb-4"
-                />
-              ) : (
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-3xl mx-auto mb-4 shadow-2xl border-4 border-white/30">
-                  {chatAvatar}
-                </div>
-              )}
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{chatName}</h3>
-              <p className="text-gray-600 text-sm font-medium">
-                Mulai percakapan dengan {chatName}
-              </p>
-              {isLoggedIn && (
-                <div className="mt-4 text-xs text-indigo-600 font-medium">
-                  Pesan tersisa: {messagesRemaining === -1 ? '∞' : messagesRemaining}
-                </div>
-              )}
+                {chatId === '1' ? (
+                  <img 
+                    src={chatAvatar} 
+                    alt={chatName}
+                    className="w-20 h-20 rounded-full object-cover border-4 border-gradient-to-r from-blue-400 to-purple-500 shadow-2xl mx-auto mb-4"
+                  />
+                ) : (
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-3xl mx-auto mb-4 shadow-2xl border-4 border-white/30">
+                    {chatAvatar}
+                  </div>
+                )}
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{chatName}</h3>
+                <p className="text-gray-600 text-sm font-medium">
+                  Mulai percakapan dengan {chatName}
+                </p>
+                {isLoggedIn && (
+                  <div className="mt-4 text-xs text-indigo-600 font-medium">
+                    Pesan tersisa: {messagesRemaining === -1 ? '∞' : messagesRemaining}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -267,8 +282,8 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
             <div className="px-4 pb-2">
               <div className="bg-gradient-to-r from-red-50 to-pink-50 border border-red-200 rounded-xl p-3">
                 <p className="text-xs text-red-700 text-center font-medium">
-                Batas pesan harian tercapai ({messagesUsed}/{messagesLimit}). 
-                {messagesLimit === 10 ? 'Daftar akun reguler atau upgrade ke Premium!' : 'Upgrade ke Premium untuk melanjutkan!'}
+                  Batas pesan harian tercapai ({messagesUsed}/{messagesLimit}). 
+                  {messagesLimit === 10 ? 'Daftar akun reguler atau upgrade ke Premium!' : 'Upgrade ke Premium untuk melanjutkan!'}
                 </p>
               </div>
             </div>
