@@ -50,7 +50,7 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
     {
       id: '2',
       name: 'Minnie Teman Baik Kamu',
-      avatar: '🌸',
+      avatar: '/444444.jpg',
       lastMessage: 'Hai! Apa kabar? 😊 Ada yang ingin ka...',
       isOnline: false,
       isAIAgent: true
@@ -328,11 +328,11 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
               <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-400/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-2xl blur transition-all duration-300"></div>
               <div className="relative flex items-center gap-3 w-full">
               <div className="relative">
-                {chat.id === '1' ? (
+                {chat.avatar.startsWith('/') ? (
                   <img 
                     src={chat.avatar} 
                     alt={chat.name}
-                    className="w-14 h-14 rounded-full object-cover border-3 border-gradient-to-r from-blue-400 to-purple-500 shadow-2xl"
+                    className="w-14 h-14 rounded-full object-cover border-2 border-white/50 shadow-2xl"
                   />
                 ) : (
                   <div className="w-14 h-14 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-xl shadow-2xl">

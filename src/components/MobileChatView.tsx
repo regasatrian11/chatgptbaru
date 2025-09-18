@@ -27,7 +27,7 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
   } = useChat();
 
   const chatName = chatId === '1' ? 'Mikasa' : 'Minnie Teman Baik Kamu';
-  const chatAvatar = chatId === '1' ? '/dww.png' : '🌸';
+  const chatAvatar = chatId === '1' ? '/dww.png' : '/444444.jpg';
   const isOnline = chatId === '1';
 
   // Listen for auto-send message events
@@ -178,12 +178,12 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
               {isOnline && (
                 <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
               )}
-            </div>
+            {chatAvatar.startsWith('/') ? (
           ) : (
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-lg shadow-2xl border-2 border-white/30">
               <div className="relative">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white">
-                  {chatAvatar}
+                  className="w-12 h-12 rounded-full object-cover border-2 border-white/50 shadow-2xl"
                 </div>
                 {isOnline && (
                   <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
@@ -233,11 +233,11 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
             <div className="text-center p-8 bg-white/80 backdrop-blur-md rounded-3xl mx-4 shadow-2xl border border-white/30">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-3xl blur opacity-20"></div>
               <div className="relative">
-                {chatId === '1' ? (
+                {chatAvatar.startsWith('/') ? (
                   <img 
                     src={chatAvatar} 
                     alt={chatName}
-                    className="w-20 h-20 rounded-full object-cover border-4 border-gradient-to-r from-blue-400 to-purple-500 shadow-2xl mx-auto mb-4"
+                    className="w-20 h-20 rounded-full object-cover border-4 border-white/50 shadow-2xl mx-auto mb-4"
                   />
                 ) : (
                   <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-3xl mx-auto mb-4 shadow-2xl border-4 border-white/30">
