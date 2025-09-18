@@ -330,18 +330,28 @@ class AuthService {
   onAuthStateChange(callback: (user: AuthUser | null) => void) {
     if (!supabase) {
       console.error('❌ Supabase not initialized for auth state change')
-      return { data: { subscription: { unsubscribe: () => {} } } }
+      return { 
+        data: { 
+          subscription: { 
+            unsubscribe: () => {
+              console.log('🔄 Mock auth subscription unsubscribed')
+            } 
+          } 
+        } 
+      }
     }
 
-    console.log('🔄 Setting up auth state listener...')
+    console.log('🔄 Setting up Supabase auth state listener...')
     
     return supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log('🔄 Auth state changed:', event)
+      console.log('🔄 Supabase auth state changed:', event, session ? 'with session' : 'no session')
       
       if (session?.user) {
+        console.log('🔄 Getting user profile for auth state change...')
         const user = await this.getCurrentUser()
         callback(user)
       } else {
+        console.log('🔄 No session, calling callback with null')
         callback(null)
       }
     })

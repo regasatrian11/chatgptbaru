@@ -42,7 +42,7 @@ export function useGoogleAuth() {
 
   useEffect(() => {
     // If user is logged in via Supabase, use that
-    if (supabaseAuth.user && !supabaseAuth.user.isDemo) {
+    if (supabaseAuth.isInitialized && supabaseAuth.user && !supabaseAuth.user.isDemo) {
       console.log('🔄 Using Supabase user');
       const supabaseUser: AuthUser = {
         id: supabaseAuth.user.id,
@@ -59,13 +59,12 @@ export function useGoogleAuth() {
       return;
     }
 
-    // Force initialization after timeout to prevent infinite loading
-    const initTimeout = setTimeout(() => {
-      console.log('⚠️ Force initializing after timeout');
-      if (!isInitialized) {
-        setIsInitialized(true);
-      }
-    }, 5000); // 5 second timeout
+    // Only proceed if Supabase auth is initialized
+    if (!supabaseAuth.isInitialized) {
+      console.log('🔄 Waiting for Supabase auth to initialize...');
+      return;
+    }
+    
     // Check if user was previously logged in
     const savedUser = localStorage.getItem('mikasa_user');
     if (savedUser) {
@@ -87,10 +86,6 @@ export function useGoogleAuth() {
     
     console.log('✅ Google auth initialized');
     setIsInitialized(true);
-    
-    return () => {
-      clearTimeout(initTimeout);
-    };
   }, [supabaseAuth.user, supabaseAuth.isInitialized]);
 
   const signInWithGoogle = async (): Promise<AuthUser | null> => {

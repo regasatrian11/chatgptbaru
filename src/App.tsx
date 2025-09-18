@@ -135,7 +135,10 @@ function App() {
 
   // Initialize app state when auth is ready
   useEffect(() => {
-    if (!isInitialized) return;
+    if (!isInitialized) {
+      console.log('🔄 Auth not yet initialized, waiting...');
+      return;
+    }
     
     console.log('🔄 Auth initialized, setting up app state:', { isLoggedIn });
     
@@ -173,8 +176,7 @@ function App() {
       setShowRegister(false);
       setShowSupabaseLogin(false);
     }
-  }
-  )
+  }, [isInitialized, isLoggedIn]) // Add proper dependencies
 
   // Show loading while checking auth status
   if (!isInitialized) {
@@ -192,7 +194,7 @@ function App() {
   }
 
   // Show landing page first
-  if (showLanding) {
+  if (showLanding && !isLoggedIn) {
     return (
       <div className="min-h-screen bg-gray-50">
         <LandingPage 
@@ -205,7 +207,7 @@ function App() {
   }
 
   // Show register page
-  if (showRegister) {
+  if (showRegister && !isLoggedIn) {
     return (
       <div className="h-screen bg-gray-50 max-w-md mx-auto">
         <SupabaseLoginForm
@@ -221,7 +223,7 @@ function App() {
   }
 
   // Show Supabase login page
-  if (showSupabaseLogin) {
+  if (showSupabaseLogin && !isLoggedIn) {
     return (
       <div className="h-screen bg-gray-50 max-w-md mx-auto">
         <SupabaseLoginForm
@@ -235,8 +237,9 @@ function App() {
       </div>
     );
   }
-  // Show welcome page only if not logged in AND no user AND showWelcome is true
-  if (!isLoggedIn && !user && showWelcome) {
+  
+  // Show welcome page only if not logged in AND showWelcome is true
+  if (!isLoggedIn && showWelcome) {
     return (
       <div className="h-screen bg-gray-50 max-w-md mx-auto">
         <WelcomeLoginPage onLoginSuccess={handleLoginSuccess} />
@@ -244,11 +247,20 @@ function App() {
     );
   }
 
-  // If logged in, always show main app (never show welcome)
-  if (isLoggedIn) {
-    // Main app content will be rendered below
+  // If not logged in and no special pages to show, show landing
+  if (!isLoggedIn && !showWelcome && !showLanding && !showRegister && !showSupabaseLogin) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <LandingPage 
+          onGetStarted={handleGetStarted} 
+          onDemoLogin={handleDemoLoginFromLanding}
+          onRegister={handleRegisterFromLanding}
+        />
+      </div>
+    );
   }
 
+  // Main app content (only shown when logged in)
   const renderContent = () => {
     if (selectedChat) {
       return (

@@ -8,6 +8,7 @@ export function useSupabaseAuth() {
 
   useEffect(() => {
     let mounted = true
+    let authSubscription: any = null
     
     // Get initial user
     const getInitialUser = async () => {
@@ -36,6 +37,7 @@ export function useSupabaseAuth() {
             }
           } catch (error) {
             console.error('Error parsing demo user:', error);
+            localStorage.removeItem('mikasa_user');
           }
         }
         
@@ -60,31 +62,55 @@ export function useSupabaseAuth() {
 
     // Set timeout to prevent infinite loading
     const initTimeout = setTimeout(() => {
-      if (mounted) {
-        console.log('⚠️ Auth initialization timeout')
+      if (mounted && !isInitialized) {
+        console.log('⚠️ Auth initialization timeout - forcing initialization')
         setIsLoading(false)
         setIsInitialized(true)
       }
-    }, 2000) // 2 second timeout
+    }, 3000) // 3 second timeout
 
+    // Initialize auth
     getInitialUser()
 
-    // Listen to auth changes
-    const { data: { subscription } } = authService.onAuthStateChange((user) => {
-      if (mounted) {
-        console.log('🔄 Supabase auth state changed:', user ? 'User logged in' : 'User logged out')
-        setUser(user)
-        setIsLoading(false)
-        setIsInitialized(true)
+    // Listen to auth changes only if not demo user
+    const setupAuthListener = async () => {
+      const savedUser = localStorage.getItem('mikasa_user');
+      let isDemo = false;
+      
+      if (savedUser) {
+        try {
+          const userData = JSON.parse(savedUser);
+          isDemo = userData.isDemo;
+        } catch (error) {
+          console.error('Error checking demo user:', error);
+        }
       }
-    })
+      
+      // Only set up Supabase auth listener if not demo user
+      if (!isDemo) {
+        console.log('🔄 Setting up Supabase auth state listener...')
+        const { data } = authService.onAuthStateChange((user) => {
+          if (mounted) {
+            console.log('🔄 Supabase auth state changed:', user ? 'User logged in' : 'User logged out')
+            setUser(user)
+            setIsLoading(false)
+            setIsInitialized(true)
+          }
+        })
+        authSubscription = data.subscription
+      }
+    }
+
+    setupAuthListener()
 
     return () => {
       mounted = false
       clearTimeout(initTimeout)
-      subscription.unsubscribe()
+      if (authSubscription) {
+        authSubscription.unsubscribe()
+      }
     }
-  }, [])
+  }, []) // Remove isInitialized from dependencies to prevent loops
 
   const signUp = async (data: SignUpData): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true)
@@ -146,6 +172,10 @@ export function useSupabaseAuth() {
     setIsLoading(true)
     try {
       console.log('🔄 Starting signout...')
+      
+      // Clear demo user data
+      localStorage.removeItem('mikasa_user')
+      
       const { error } = await authService.signOut()
       
       if (error) {
