@@ -58,14 +58,14 @@ export default function ChatInput({ onSendMessage, onSendImage, onTakePhoto, dis
       <div className="p-4">
       {/* Attachment Menu */}
       {showAttachMenu && (
-        <div className="mb-3 bg-white/90 backdrop-blur-md border border-white/30 rounded-2xl shadow-2xl p-3">
+        <div className="mb-3 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border border-white/30 dark:border-gray-700/50 rounded-2xl shadow-2xl p-3 transition-colors duration-300">
           <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-2xl blur opacity-20"></div>
           <div className="relative">
-          <label className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors">
+          <label className="flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg cursor-pointer transition-colors duration-300">
             <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
               <Image size={16} className="text-white" />
             </div>
-            <span className="text-sm text-gray-700 font-medium">Kirim Foto</span>
+            <span className="text-sm text-gray-700 dark:text-gray-200 font-medium">Kirim Foto</span>
             <input
               type="file"
               accept="image/*"
@@ -81,12 +81,12 @@ export default function ChatInput({ onSendMessage, onSendImage, onTakePhoto, dis
               setShowAttachMenu(false);
             }}
             disabled={disabled}
-            className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center">
               <Camera size={16} className="text-white" />
             </div>
-            <span className="text-sm text-gray-700 font-medium">Kamera Langsung</span>
+            <span className="text-sm text-gray-700 dark:text-gray-200 font-medium">Kamera Langsung</span>
           </button>
           </div>
         </div>
@@ -94,11 +94,11 @@ export default function ChatInput({ onSendMessage, onSendImage, onTakePhoto, dis
       
       <div className="flex gap-3 items-end relative">
         <div className="absolute -inset-1 bg-gradient-to-r from-blue-400/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur"></div>
-        <div className="relative flex gap-3 items-end w-full bg-white/80 backdrop-blur-sm rounded-3xl p-3 border border-white/30 shadow-xl">
+        <div className="relative flex gap-3 items-end w-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-3 border border-white/30 dark:border-gray-700/50 shadow-xl transition-colors duration-300">
         <button
           onClick={() => setShowAttachMenu(!showAttachMenu)}
           disabled={disabled}
-          className="w-11 h-11 bg-gradient-to-r from-gray-100 to-gray-200 text-gray-600 rounded-full hover:from-gray-200 hover:to-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110"
+          className="w-11 h-11 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 text-gray-600 dark:text-gray-300 rounded-full hover:from-gray-200 hover:to-gray-300 dark:hover:from-gray-600 dark:hover:to-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110"
         >
           <Paperclip size={18} />
         </button>
@@ -113,6 +113,7 @@ export default function ChatInput({ onSendMessage, onSendImage, onTakePhoto, dis
           autoCapitalize="off"
           spellCheck="false"
           className="flex-1 resize-none rounded-2xl border border-white/30 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] max-h-32 bg-white/70 backdrop-blur-sm shadow-inner font-medium"
+          className="flex-1 resize-none rounded-2xl border border-white/30 dark:border-gray-700/50 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] max-h-32 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm shadow-inner font-medium text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
           rows={1}
         />
         <button

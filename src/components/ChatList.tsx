@@ -212,7 +212,7 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
   }
 
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 relative overflow-hidden">
+    <div className="flex flex-col h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-purple-500/20 rounded-full blur-xl animate-pulse"></div>
@@ -226,7 +226,7 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
       </div>
 
       {/* Header */}
-      <div className="relative z-10 flex items-center justify-between p-4 border-b border-white/20 bg-white/80 backdrop-blur-md shadow-lg">
+      <div className="relative z-10 flex items-center justify-between p-4 border-b border-white/20 dark:border-gray-700/50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-lg transition-colors duration-300">
         <div></div> {/* Empty space where title was */}
         <div className="flex items-center gap-2">
           <button
@@ -245,15 +245,15 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
       </div>
 
       {/* Usage Stats */}
-      <div className="relative z-10 bg-white/90 backdrop-blur-md mx-4 mt-4 rounded-2xl border border-white/30 p-4 shadow-xl">
+      <div className="relative z-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md mx-4 mt-4 rounded-2xl border border-white/30 dark:border-gray-700/50 p-4 shadow-xl transition-colors duration-300">
         <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-2xl blur opacity-20"></div>
         <div className="relative">
-        <h3 className="font-medium text-gray-900 mb-3">Pesan Hari Ini</h3>
+        <h3 className="font-medium text-gray-900 dark:text-white mb-3">Pesan Hari Ini</h3>
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs text-gray-600">Status</span>
+          <span className="text-xs text-gray-600 dark:text-gray-300">Status</span>
           <div className="flex items-center gap-2">
             {subscription?.end_date && (
-              <span className="text-xs text-gray-500">Berakhir: {new Date(subscription.end_date).toLocaleDateString('id-ID')}</span>
+              <span className="text-xs text-gray-500 dark:text-gray-400">Berakhir: {new Date(subscription.end_date).toLocaleDateString('id-ID')}</span>
             )}
             <span className={`text-xs font-bold px-3 py-1 rounded-full shadow-lg ${
               isPremium ? 'bg-purple-100 text-purple-800' :
@@ -265,14 +265,14 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
           </div>
         </div>
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm text-gray-600">
+          <span className="text-sm text-gray-600 dark:text-gray-300">
             {messagesUsed}/{messagesLimit === -1 ? '∞' : messagesLimit} pesan
           </span>
-          <span className="text-sm text-gray-600">
+          <span className="text-sm text-gray-600 dark:text-gray-300">
             {messagesLimit === -1 ? '∞' : messagesRemaining} tersisa
           </span>
         </div>
-        <div className="mt-3 bg-gray-200 rounded-full h-3 shadow-inner">
+        <div className="mt-3 bg-gray-200 dark:bg-gray-700 rounded-full h-3 shadow-inner transition-colors duration-300">
           <div 
             className={`h-3 rounded-full transition-all duration-500 shadow-lg ${
               messagesUsed >= messagesLimit * 0.8 ? 'bg-red-500' : 
@@ -284,15 +284,15 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
           ></div>
         </div>
         {!canSendMessage && messagesLimit !== -1 && (
-          <div className="mt-3 p-3 bg-gradient-to-r from-red-50 to-pink-50 border border-red-200 rounded-xl">
-            <p className="text-xs text-red-700 font-medium text-center">
+          <div className="mt-3 p-3 bg-gradient-to-r from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20 border border-red-200 dark:border-red-700 rounded-xl transition-colors duration-300">
+            <p className="text-xs text-red-700 dark:text-red-300 font-medium text-center">
             ⚠️ Batas harian tercapai ({messagesUsed}/{messagesLimit}). 
             {messagesLimit === 10 ? ' Daftar akun reguler atau upgrade ke Premium!' : ' Upgrade ke Premium untuk melanjutkan!'}
           </p>
           </div>
         )}
         {canSendMessage && messagesUsed >= messagesLimit * 0.8 && (
-          <p className="text-xs text-yellow-600 bg-yellow-50 p-2 rounded-lg">
+          <p className="text-xs text-yellow-600 dark:text-yellow-300 bg-yellow-50 dark:bg-yellow-900/20 p-2 rounded-lg transition-colors duration-300">
             ⚠️ Hampir mencapai batas harian ({messagesUsed}/{messagesLimit}).
             </p>
         )}
@@ -323,7 +323,7 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
             <div
               key={chat.id}
               onClick={() => onSelectChat(chat.id)}
-              className="relative group flex items-center gap-3 p-4 hover:bg-white/70 cursor-pointer rounded-2xl transition-all duration-300 active:scale-95 hover:shadow-xl backdrop-blur-sm border border-white/20"
+              className="relative group flex items-center gap-3 p-4 hover:bg-white/70 dark:hover:bg-gray-800/70 cursor-pointer rounded-2xl transition-all duration-300 active:scale-95 hover:shadow-xl backdrop-blur-sm border border-white/20 dark:border-gray-700/30"
             >
               <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-400/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-2xl blur transition-all duration-300"></div>
               <div className="relative flex items-center gap-3 w-full">
@@ -346,7 +346,7 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
               
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <h3 className="font-bold text-gray-900 truncate text-lg">{chat.name}</h3>
+                  <h3 className="font-bold text-gray-900 dark:text-white truncate text-lg">{chat.name}</h3>
                   {chat.isAIAgent && (
                     <span className="text-xs text-white bg-gradient-to-r from-purple-500 to-pink-500 px-2 py-1 rounded-full font-bold shadow-lg">
                       AI
@@ -358,7 +358,7 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
                     </span>
                   )}
                 </div>
-                <p className="text-sm text-gray-600 truncate font-medium">{chat.lastMessage}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300 truncate font-medium">{chat.lastMessage}</p>
               </div>
               </div>
             </div>
@@ -376,17 +376,17 @@ export default function ChatList({ onSelectChat, onNewChat, activeTab, onTabChan
       </div>
 
       {/* Bottom Navigation */}
-      <div className="relative z-10 flex items-center justify-around p-4 border-t border-white/20 bg-white/90 backdrop-blur-md shadow-2xl">
+      <div className="relative z-10 flex items-center justify-around p-4 border-t border-white/20 dark:border-gray-700/50 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-2xl transition-colors duration-300">
         <button 
           onClick={() => onTabChange('chat')}
-          className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-white/70 transition-all duration-300 hover:shadow-md hover:scale-105 relative group"
+          className="flex flex-col items-center gap-1 p-1 rounded-lg hover:bg-white/70 dark:hover:bg-gray-700/70 transition-all duration-300 hover:shadow-md hover:scale-105 relative group"
         >
           {activeTab === 'chat' && (
             <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-purple-500 rounded-lg blur opacity-30"></div>
           )}
           <div className="relative">
-          <MessageCircle size={20} className={activeTab === 'chat' ? 'text-gray-900' : 'text-gray-400'} />
-          <span className={`text-xs ${activeTab === 'chat' ? 'text-gray-900 font-medium' : 'text-gray-400'}`}>
+          <MessageCircle size={20} className={activeTab === 'chat' ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-500'} />
+          <span className={`text-xs ${activeTab === 'chat' ? 'text-gray-900 dark:text-white font-medium' : 'text-gray-400 dark:text-gray-500'}`}>
             Obrolan
           </span>
           </div>

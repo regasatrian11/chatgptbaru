@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { ThemeProvider } from './components/ThemeProvider';
 import { useSupabaseAuth } from './hooks/useSupabaseAuth';
 import LandingPage from './components/LandingPage';
 import WelcomeLoginPage from './components/WelcomeLoginPage';
@@ -289,9 +290,11 @@ function App() {
   };
 
   return (
-    <div className="h-screen bg-gray-50 max-w-md mx-auto">
-      {renderContent()}
-    </div>
+    <ThemeProvider>
+      <div className="h-screen bg-gray-50 dark:bg-gray-900 max-w-md mx-auto transition-colors duration-300">
+        {renderContent()}
+      </div>
+    </ThemeProvider>
   );
 }
 

@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme transition for smooth switching */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
 /* Custom animations for landing page */
 @keyframes spin-slow {
   from {
@@ -164,60 +171,11 @@
     color-scheme: dark;
   }
   
-  html.dark body {
-    @apply bg-gray-900 text-white;
-  }
-  
-  html.dark .bg-white {
-    @apply bg-gray-800;
-  }
-  
-  html.dark .bg-gray-50 {
-    @apply bg-gray-900;
-  }
-  
-  html.dark .bg-gray-100 {
-    @apply bg-gray-800;
-  }
-  
-  html.dark .text-gray-900 {
-    @apply text-white;
-  }
-  
-  html.dark .text-gray-800 {
-    @apply text-gray-100;
-  }
-  
-  html.dark .text-gray-700 {
-    @apply text-gray-200;
-  }
-  
-  html.dark .text-gray-600 {
-    @apply text-gray-300;
-  }
-  
-  html.dark .text-gray-500 {
-    @apply text-gray-400;
-  }
-  
-  html.dark .border-gray-100 {
-    @apply border-gray-700;
-  }
-  
-  html.dark .border-gray-200 {
-    @apply border-gray-600;
-  }
-  
-  html.dark .border-gray-300 {
-    @apply border-gray-500;
-  }
-  
-  html.dark .hover\:bg-gray-50:hover {
-    @apply bg-gray-700;
-  }
-  
-  html.dark .hover\:bg-gray-100:hover {
-    @apply bg-gray-700;
+  /* Ensure proper dark mode colors */
+  html.dark {
+    --tw-bg-opacity: 1;
+    background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+    color: rgb(243 244 246 / var(--tw-text-opacity));
   }
 }
 
@@ -282,4 +240,20 @@
   html.font-large .text-2xl {
     font-size: 1.75rem;
   }
+}
+
+/* Improved dark mode support */
+@media (prefers-color-scheme: dark) {
+  html:not(.light) {
+    color-scheme: dark;
+  }
+}
+
+/* Smooth transitions for theme changes */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

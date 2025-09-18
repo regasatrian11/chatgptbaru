@@ -151,7 +151,7 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
     );
   }
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 relative overflow-hidden">
+    <div className="flex flex-col h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-purple-500/10 rounded-full blur-xl animate-pulse"></div>
@@ -160,11 +160,11 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
       </div>
 
       {/* Header */}
-      <div className="relative z-10 flex items-center justify-between p-4 border-b border-white/20 bg-white/90 backdrop-blur-md shadow-lg">
+      <div className="relative z-10 flex items-center justify-between p-4 border-b border-white/20 dark:border-gray-700/50 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-lg transition-colors duration-300">
         <div className="flex items-center gap-3">
           <button 
             onClick={onBack} 
-            className="p-2 hover:bg-white/70 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-110"
+            className="p-2 hover:bg-white/70 dark:hover:bg-gray-700/70 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-110"
           >
             <ArrowLeft size={20} className="text-indigo-600" />
           </button>
@@ -196,10 +196,10 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
             </div>
           )}
           <div>
-            <h2 className="font-bold text-gray-900 text-lg">{chatName}</h2>
-            {isOnline && <p className="text-xs text-green-600 font-medium">● Online</p>}
+            <h2 className="font-bold text-gray-900 dark:text-white text-lg">{chatName}</h2>
+            {isOnline && <p className="text-xs text-green-600 dark:text-green-400 font-medium">● Online</p>}
             {!canSendMessage && (
-              <p className="text-xs text-red-600 font-medium">⚠️ Batas pesan tercapai</p>
+              <p className="text-xs text-red-600 dark:text-red-400 font-medium">⚠️ Batas pesan tercapai</p>
             )}
           </div>
         </div>
@@ -275,7 +275,7 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
 
       {/* Input */}
       {isLoggedIn ? (
-        <div className="relative z-10 bg-white/90 backdrop-blur-md border-t border-white/20 shadow-2xl">
+        <div className="relative z-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border-t border-white/20 dark:border-gray-700/50 shadow-2xl transition-colors duration-300">
           <ChatInput 
             onSendMessage={handleSendMessage} 
             onSendImage={handleSendImage}
@@ -284,8 +284,8 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
           />
           {!canSendMessage && (
             <div className="px-4 pb-2">
-              <div className="bg-gradient-to-r from-red-50 to-pink-50 border border-red-200 rounded-xl p-3">
-                <p className="text-xs text-red-700 text-center font-medium">
+              <div className="bg-gradient-to-r from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20 border border-red-200 dark:border-red-700 rounded-xl p-3 transition-colors duration-300">
+                <p className="text-xs text-red-700 dark:text-red-300 text-center font-medium">
                   Batas pesan harian tercapai ({messagesUsed}/{messagesLimit}). 
                   {messagesLimit === 10 ? 'Daftar akun reguler atau upgrade ke Premium!' : 'Upgrade ke Premium untuk melanjutkan!'}
                 </p>
@@ -294,9 +294,9 @@ export default function MobileChatView({ chatId, onBack }: MobileChatViewProps) 
           )}
         </div>
       ) : (
-        <div className="relative z-10 bg-white/90 backdrop-blur-md border-t border-white/20 p-4 shadow-2xl">
+        <div className="relative z-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border-t border-white/20 dark:border-gray-700/50 p-4 shadow-2xl transition-colors duration-300">
           <div className="text-center">
-            <p className="text-gray-600 text-sm mb-3">
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
               Silakan login terlebih dahulu untuk dapat mengirim pesan
             </p>
             <div className="relative">

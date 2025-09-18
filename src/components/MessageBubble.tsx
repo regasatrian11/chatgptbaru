@@ -15,7 +15,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
       <div className={`max-w-[75%] rounded-2xl px-4 py-3 relative ${
         isUser 
           ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-br-md shadow-xl' 
-          : 'bg-white/90 backdrop-blur-sm text-gray-800 rounded-bl-md shadow-xl border border-white/30'
+          : 'bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm text-gray-800 dark:text-white rounded-bl-md shadow-xl border border-white/30 dark:border-gray-700/50 transition-colors duration-300'
       }`}>
         {isUser && (
           <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl blur opacity-30"></div>
@@ -26,7 +26,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
         <div className="relative">
         {isImageMessage ? (
           <div className="flex items-center gap-2">
-            <Image size={16} className={isUser ? 'text-blue-200' : 'text-purple-500'} />
+            <Image size={16} className={isUser ? 'text-blue-200' : 'text-purple-500 dark:text-purple-400'} />
             <span className="text-sm leading-relaxed">
               {message.content}
             </span>
@@ -36,7 +36,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
         )}
         </div>
       </div>
-      <span className={`text-xs text-gray-500 mb-1 font-medium ${isUser ? 'mr-1' : 'ml-1'}`}>
+      <span className={`text-xs text-gray-500 dark:text-gray-400 mb-1 font-medium ${isUser ? 'mr-1' : 'ml-1'} transition-colors duration-300`}>
         {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
       </span>
     </div>
